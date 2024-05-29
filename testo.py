@@ -11,7 +11,6 @@ FOOD_COLOR = "#FFFF00"
 BACKGROUND_COLOR = "#808080"
 
 class Snake:
-    
     def __init__(self):
         self.body_size = BODY_PARTS
         self.coordinates = []
@@ -25,15 +24,13 @@ class Snake:
             self.squares.append(square)
 
 class Food:
-   
     def __init__(self):
-
         x = random.randint(0, (GAME_WIDTH // SPACE_SIZE) - 1) * SPACE_SIZE
         y = random.randint(0, (GAME_HEIGHT // SPACE_SIZE) - 1) * SPACE_SIZE
 
         self.coordinates = [x, y]
 
-        canvas.create_oval(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=FOOD_COLOR, tag="food" )
+        canvas.create_oval(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=FOOD_COLOR, tag="food")
 
 def next_turn(snake, food):  # menambah panjang ular 
     if is_auto_mode:
@@ -142,11 +139,14 @@ is_auto_mode = False
 label = Label(window, text="Score: {}".format(score), font=('Times New Roman', 40))
 label.pack()
 
-canvas = Canvas(window, bg=BACKGROUND_COLOR, height=GAME_HEIGHT, width=GAME_WIDTH)
+frame = Frame(window)
+frame.pack(pady=10)  # Menambahkan padding di antara frame dan label skor
+
+canvas = Canvas(frame, bg=BACKGROUND_COLOR, height=GAME_HEIGHT, width=GAME_WIDTH)
 canvas.pack()
 
-mode_button = Button(window, text="Mode: Manual", command=toggle_mode)
-mode_button.pack()
+mode_button = Button(frame, text="Mode: Manual", command=toggle_mode)
+mode_button.pack(pady=15)  # Menambahkan padding antara kanvas dan tombol mode
 
 window.update()
 
